@@ -1,0 +1,20 @@
+#include <iostream>
+#include <string>
+#include <windows.h>
+#include <winuser.h>
+#pragma comment(lib, "user32")
+
+int main()
+{
+  HWND hwnd = FindWindowA(NULL, "Kalculator");
+  UINT hwndval = (UINT)hwnd;
+  std::string hwndstr = std::to_string(hwndval);
+  SendMessage(hwnd, WM_SYSCOMMAND, SC_MAXIMIZE, NULL);
+  keybd_event(VK_NUMPAD5,0,0,0);
+  keybd_event(VK_NUMPAD5, KEYEVENTF_KEYUP,0);
+  
+  system("pause");
+  SendMessage(hwnd, VM_CLOSE, NULL, NULL);
+  
+  std::cout <<hwndstr<< "hwnd\n";
+}
